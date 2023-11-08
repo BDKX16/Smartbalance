@@ -1,0 +1,30 @@
+.days-navigator{
+    display:flex;
+    align-items: center;
+    width:600px;
+    justify-content: space-between;
+}
+#left-svg{
+    padding:9px;
+    border-radius: 30px;   
+    
+    transform: rotate(180deg);
+    transition: all .3s ease;
+}
+
+#left-svg:hover{
+    transform: translateX(-7px) rotate(180deg);
+    box-shadow: 1px 1px 10px 5px rgb(199, 211, 199);
+}
+
+#right-svg{
+    
+    padding:9px;
+    border-radius: 30px;
+    transition: all .4s ease;
+}
+
+#right-svg:hover{
+    transform: translateX(7px);
+    box-shadow: 1px 1px 10px 5px rgb(199, 211, 199);
+}
