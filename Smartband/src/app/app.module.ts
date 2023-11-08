@@ -15,12 +15,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginService } from './login/login.service';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginGuardian } from './login/login-guardian';
+import { ErrorComponent } from './error/error.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 const appRoutes:Routes=[
   {path:"login",component:LoginComponent},
   {path:"comidas",component:ComidasComponent},
   {path:"",component:DashboardComponent},
-  {path:"newdevice",component:DeviceComponent},
+  {path:"newdevice",component:DeviceComponent,canActivate:[LoginGuardian]},
+  {path:"**",component:ErrorComponent},
 ]
 
 
@@ -30,7 +33,9 @@ const appRoutes:Routes=[
     LoginComponent,
     DeviceComponent,
     DashboardComponent,
-    ComidasComponent
+    ComidasComponent,
+    ErrorComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
