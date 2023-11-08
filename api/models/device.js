@@ -7,8 +7,7 @@ const Schema = mongoose.Schema;
 const deviceSchema = new Schema({
     userId: { type: String },
     dId: { type: String, unique: true, required: [true] },
-    name: { type: String, required: [true] },
-    password: { type: String, required: [true] }, 
+    name: { type: String, required: [true],default:"balanza" },
 });
 
 // Validator

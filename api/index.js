@@ -23,7 +23,8 @@ app.use(cors());
 //express
 app.use("/api", require("./routes/devices.js"));
 app.use("/api", require("./routes/users.js"));
-
+app.use("/api", require("./routes/foods.js"));
+app.use("/api", require("./routes/user_datas.js"));
 
 module.exports = app;
 
