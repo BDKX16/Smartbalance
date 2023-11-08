@@ -18,7 +18,7 @@ const Data = require("../models/user_data.js");
 
 
 //GET DEVICES
-router.get("/device", async (req, res) => {
+router.get("/device",checkAuth, async (req, res) => {
     try {
         const userId = req.userData._id;
 
@@ -27,7 +27,6 @@ router.get("/device", async (req, res) => {
 
         //mongoose array to js array
         devices = JSON.parse(JSON.stringify(devices));
-
 
         const response = {
             status: "success",
@@ -49,21 +48,29 @@ router.get("/device", async (req, res) => {
 });
 
 //NEW DEVICE
-router.post("/device", async (req, res) => {
+router.post("/device", checkAuth,async (req, res) => {
     try {
         const userId = req.userData._id;
 
-        var newDevice = req.body.newDevice;
+        var newDevice = req.body;
 
-        var devices = await Device.find({ dId: newDevice.dId });
+        var devices = await Device.findOne({ dId: newDevice.dId });
 
-        if (devices.length == 0) {
+        if (!devices) {
+            
             const response = {
                 status: "error",
                 message: "Invalid dId"
             };
 
             return res.status(401).json(response);
+        }else if(devices.userId!==""){
+            const response = {
+                status: "error",
+                message: "Already assigned"
+            };
+
+            return res.status(500).json(response);
         }
 
 
@@ -73,7 +80,7 @@ router.post("/device", async (req, res) => {
             status: "success"
         };
 
-        return res.json(response);
+        return res.status(200).json(response);
     } catch (error) {
         console.log("ERROR CREATING NEW DEVICE");
         console.log(error);

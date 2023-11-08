@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const deviceSchema = new Schema({
-    userId: { type: String },
+    userId: { type: String,  required: [true],default:""},
     dId: { type: String, unique: true, required: [true] },
     name: { type: String, required: [true],default:"balanza" },
 });

@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div>
+    <form #miFormulario="ngForm" (ngSubmit)="login(miFormulario)">
+        <div>
+            <input type="email" name="email" placeholder="Email" ngModel>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Contrasena" ngModel>
+        </div>
+
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</div>
+

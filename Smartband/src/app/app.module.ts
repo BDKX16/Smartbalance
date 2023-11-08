@@ -4,12 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ComidasComponent } from './comidas/comidas.component';
 import { DeviceComponent } from './device/device.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginService } from './login/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes:Routes=[
   {path:"login",component:LoginComponent},
@@ -32,9 +36,10 @@ const appRoutes:Routes=[
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [LoginService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

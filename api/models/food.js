@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const foodSchema = new Schema({
   userId: { type: String, required: [true] },
   name: { type: String, required: [true] },
-  foodId: { type: String, required: [true]},
+  foodId: { type: Number, required: [true]},
   carbs: {  type: Number},
   prots: {  type: Number },
   fats: {  type: Number },

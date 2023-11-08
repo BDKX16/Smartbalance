@@ -70,7 +70,6 @@ mongoose.connect(uri, options).then(
     console.log("✔ Mongo Successfully Connected!".green);
     console.log("*******************************".green);
     console.log("\n");
-    global.check_mqtt_superuser();
 
   },
   err => {

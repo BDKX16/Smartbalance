@@ -3,7 +3,7 @@ const router = express.Router();
 const { checkAuth } = require("../middlewares/authentication.js");
 const axios = require("axios");
 
-const Food = require( "../models/food.js");
+const Food = require("../models/food.js");
 
 
 //POST -> req.body
@@ -14,21 +14,20 @@ const Food = require( "../models/food.js");
 //******************
 
 
-router.get('/get-user-foods', async (req, res) => {
+router.get('/get-user-foods', checkAuth,async (req, res) => {
 
     try {
 
         const userId = req.userData._id;
-        const queryUserId = req.query.userId;
 
-        const data = await Food.find({ userId: queryUserId });
+        const data = await Food.find({ userId: userId });
 
         const response = {
             status: "success",
             data: data
         }
 
-        return res.json(response)
+        return res.status(200).json(response);
 
     } catch (error) {
 
@@ -46,16 +45,27 @@ router.get('/get-user-foods', async (req, res) => {
 });
 
 
-router.post('/load-user-food', async (req, res) => {
+router.post('/load-user-food', checkAuth, async (req, res) => {
 
     try {
 
         const userId = req.userData._id;
-        const userFood = req.body.userFood;
+        const userFood = req.body;
 
-        const data = await Food.create(userFood);
+        userFood.userId = userId;
 
-        return res.status(200)
+        const comida = await Food.findOne({ userId: userId }).sort('-foodId');
+        const maxId = comida.foodId+1;
+        userFood.foodId = maxId;
+        
+        const result = await Food.create(userFood);
+
+        const response = {
+            status: "success",
+            data:result
+        }
+
+        return res.status(200).json(response);
 
     } catch (error) {
 
@@ -71,4 +81,5 @@ router.post('/load-user-food', async (req, res) => {
     }
 
 });
-  
+
+module.exports = router;

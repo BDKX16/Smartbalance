@@ -16,14 +16,21 @@ const Device = require("../models/device.js");
 
 
 
-router.get('/get-data', async (req, res) => {
+router.get('/get-data', checkAuth,async (req, res) => {
 
     try {
 
         const userId = req.userData._id;
         const timeAgo = req.query.timeAgo;
-        const dId = req.query.dId;
-        const variable = req.query.variable;
+
+        if(timeAgo>7){
+            const response = {
+                status: "error",
+                message: "no records"
+            }
+    
+            return res.json(response)
+        }
 
         const timeAgoMs = Date.now() - (timeAgo * 24 * 60 * 60 * 60 * 1000);
 
@@ -62,15 +69,18 @@ router.post('/load-data', async (req, res) => {
         const grams = req.body.grams;
 
         const device = await Device.findOne({ dId: dId });
-        console.log(device)
 
         if (!device) {
-            return res.status(500);
+            const response={
+                status:"error",
+                message:"no device"
+            }
+            return res.status(500).json(response);
         }
 
 
         let newData = {
-            userId: device.dId,
+            userId: device.userId,
             grams: grams,
             foodId: foodId,
             time: Date.now(),
@@ -78,8 +88,11 @@ router.post('/load-data', async (req, res) => {
 
         await Data.create(newData);
 
+        const response={
+            status:"ok"
+        }
 
-        return res.status(200)
+        return res.status(200).json(response)
 
     } catch (error) {
 
@@ -97,3 +110,5 @@ router.post('/load-data', async (req, res) => {
 });
 
 
+
+module.exports = router;
