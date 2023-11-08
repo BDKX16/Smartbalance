@@ -14,6 +14,7 @@ import { DeviceComponent } from './device/device.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginService } from './login/login.service';
 import { CookieService } from 'ngx-cookie-service';
+import { LoginGuardian } from './login/login-guardian';
 
 const appRoutes:Routes=[
   {path:"login",component:LoginComponent},
@@ -39,7 +40,7 @@ const appRoutes:Routes=[
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [LoginService, CookieService],
+  providers: [LoginService, CookieService, LoginGuardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

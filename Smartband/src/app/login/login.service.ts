@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable()
 export class LoginService {
-  constructor(private router: Router, private httpClient: HttpClient) {}
-
-  token: string | undefined;
-  userData: any | undefined;
+  constructor(private router: Router, private httpClient: HttpClient, private cookies:CookieService) {}
 
   login(email: string, password: string) {
     return this.httpClient
@@ -16,23 +14,23 @@ export class LoginService {
         password: password,
       })
       .subscribe((response:any) => {
-        this.token = response.token;
-        this.userData = response.userData;
+        this.cookies.set('token',response.token);
+        this.cookies.set('userData',JSON.stringify(response.userData));
         this.router.navigate(['/']);
       });
   }
 
   getIdToken() {
-    return this.token;
+    return this.cookies.get('token');
   }
 
   getUserData() {
-    return this.userData;
+    return JSON.parse(this.cookies.get('userData'));
   }
 
   logout() {
-    this.userData = undefined;
-    this.token = undefined;
+    this.cookies.set('token','');
+    this.cookies.set('userData','');
     this.router.navigate(['/login'])
   }
 }
