@@ -6,23 +6,23 @@
       <h3>Ingresa un alimento</h3>
       <div class="text-input">
         <label>Nombre de la comida</label>
-        <input type="text">
+        <input type="text" name="name" ngModel>
       </div>
         <div class="number-input">
-          <label>Total calories (kcal/100gr)</label>
-          <input type="number">
+          <label>Calories on 100gr (Opcional)</label>
+          <input type="number" name="calorias" ngModel>
         </div>
         <div class="number-input"> 
-          <label>Protein (grams on 100gr)</label>
-          <input type="number">
+          <label>Protein grams on 100gr</label>
+          <input type="number" name="prots" ngModel>
         </div>
         <div class="number-input">
-          <label>Carbohidrates (grams on 100gr)</label>
-          <input type="number">
+          <label>Carbohidrate grams on 100gr</label>
+          <input type="number" name="carbs" ngModel>
         </div>
         <div class="number-input">
-          <label>Fats (grams on 100gr)</label>
-          <input type="number">
+          <label>Fat grams on 100gr</label>
+          <input type="number" name="fats" ngModel>
         </div>
 
         <div class="btn">

@@ -49,7 +49,38 @@ displayedColumns: string[] = ['name', 'prots', 'carbs', 'fats', 'calorias', 'act
 
     const token = this.loginService.getIdToken();
 
-    console.log(token)
+    const httpHeaders = {
+      headers: {
+        token: token,
+        "Content-Type": "application/json"
+      }
+    };
+
+    let calorias;
+    if(form.value.calorias==0 || !form.value.calorias){
+       calorias = form.value.carbs*4+form.value.prots*4+ form.value.fats*9;
+    }else{
+      calorias = form.value.calorias;
+    }
+    const toSend = {
+
+      name: form.value.name,
+      carbs: form.value.carbs,
+      prots: form.value.prots,
+      fats: form.value.fats,
+      calorias: calorias
+    };
+    
+
+    this.httpClient
+      .post('http://localhost:3000/api/load-user-food',toSend,httpHeaders)
+      .subscribe((response:any) => {
+        console.log(response.data);
+        window.location.reload();
+      });
+      
+
+
   }
 
   remove(foodId:Number){

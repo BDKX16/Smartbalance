@@ -6,8 +6,6 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class LoginGuardian implements CanActivate{
-
-
     constructor(private loginService:LoginService,private router:Router){}
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         
