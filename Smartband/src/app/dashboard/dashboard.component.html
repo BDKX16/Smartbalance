@@ -1,14 +1,102 @@
 <app-topbar></app-topbar>
-<div class="days-navigator">
-    <svg id="left-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-    </svg>
-    <h1>Hoy</h1>
-    <svg id="right-svg" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-        class="bi bi-chevron-right" viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-    </svg>
+<div class="dash-container">
+  <div class="days-navigator">
+    <a (click)="prevDay()">
+      <svg
+        id="left-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+    </a>
+
+    <div class="day-container">
+      <h1>{{diaAsegun}}</h1>
+      <p>{{ diaShown }}</p>
+    </div>
+    <a (click)="nextDay()">
+      <svg
+        id="right-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+    </a>
+  </div>
+
+  <table mat-table [dataSource]="UserIngests" class="mat-elevation-z8">
+    <!-- Item Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Food</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.name }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">Total</td>
+    </ng-container>
+
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef>Hour</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.time }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer"></td>
+    </ng-container>
+
+    <ng-container matColumnDef="grams">
+      <th mat-header-cell *matHeaderCellDef>Grams</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.grams }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        {{ getTotalGrams() }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fats">
+      <th mat-header-cell *matHeaderCellDef>Fats</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.fats }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        {{ getTotal("fats") }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="carbs">
+      <th mat-header-cell *matHeaderCellDef>Carbohidrates</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.carbs }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        {{ getTotal("carbs") }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prots">
+      <th mat-header-cell *matHeaderCellDef>Prots</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.prots }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        {{ getTotal("prots") }}
+      </td>
+    </ng-container>
+
+    <!-- Cost Column -->
+    <ng-container matColumnDef="calorias">
+      <th mat-header-cell *matHeaderCellDef>Calories</th>
+      <td mat-cell *matCellDef="let UserIngest">{{ UserIngest.calorias }}</td>
+      <td mat-footer-cell *matFooterCellDef class="table-footer">
+        {{ getTotalCalories() }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
 </div>

@@ -7,5 +7,20 @@
 }
 
 table{
-    width:800px;
+    margin-top:3rem;
+    width:100%;
+}
+
+.trash-button{
+    cursor: pointer;
+    padding: 6px 3px 2px 3px;
+    border-radius: 10px;
+    border:0px solid transparent;
+    color:#85ff7c;
+    background-color: #1a3ee0;
+}
+
+.mat-mdc-header-row{
+    color:white;
+    background-color: #1f14fb;
 }

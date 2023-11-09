@@ -17,6 +17,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginGuardian } from './login/login-guardian';
 import { ErrorComponent } from './error/error.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatTableModule} from '@angular/material/table';
+
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const appRoutes:Routes=[
   {path:"login",component:LoginComponent},
@@ -43,7 +47,10 @@ const appRoutes:Routes=[
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatTooltipModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [LoginService, CookieService, LoginGuardian],
   bootstrap: [AppComponent]

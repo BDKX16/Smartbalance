@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const dataSchema = new Schema({
   userId: { type: String, required: [true] },
-  foodId: { type: String, required: [true]},
+  foodId: { type: Number, required: [true]},
   grams: {  type: Number, required: [true]},
   time: {type: Number, required: [true]}
 });

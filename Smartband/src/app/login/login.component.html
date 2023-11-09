@@ -1,15 +1,23 @@
-<div>
+<div class="container">
+    <div class="form-container">
+        
     <form #miFormulario="ngForm" (ngSubmit)="login(miFormulario)">
-        <div>
-            <input type="email" name="email" placeholder="Email" ngModel>
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Contrasena" ngModel>
-        </div>
-
-        <div>
-            <button type="submit">Login</button>
-        </div>
+        <div class="balanza"><h1>Smart <br>Balance</h1></div>
+        <div class="inputs">
+            <div class="text-inputs">
+                <div class="form-input">
+                    <input type="email" name="email" placeholder="Email" ngModel>
+                </div>
+                <div class="form-input">
+                    <input type="password" name="password" placeholder="Contrasena" ngModel>
+                </div>
+            </div>
+            
+            <div class="form-button">
+                <button type="submit">Login</button>
+            </div>
+        </div>  
     </form>
+</div>
 </div>
 

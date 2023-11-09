@@ -13,22 +13,44 @@
     </div>
 
 </form>
-<table>
-    <thead>
-        <th>Nombre</th>
-        <th>cals/100gr</th>
-        <th>Prote</th>
-        <th>Carbos</th>
-        <th>Grasas</th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>algo</td>
-            <td>algo</td>
-            <td>algo</td>
-            <td>algo</td>
-            <td>algo</td>
-        </tr>
-    </tbody>
 
-</table>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prots">
+        <th mat-header-cell *matHeaderCellDef> Protein </th>
+        <td mat-cell *matCellDef="let user"> {{user.prots}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="carbs">
+        <th mat-header-cell *matHeaderCellDef> Carbohidrates </th>
+        <td mat-cell *matCellDef="let user"> {{user.carbs}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fats">
+        <th mat-header-cell *matHeaderCellDef> Fats </th>
+        <td mat-cell *matCellDef="let user"> {{user.fats}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="calorias">
+        <th mat-header-cell *matHeaderCellDef> Total calories</th>
+        <td mat-cell *matCellDef="let user"> {{user.calorias}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Eliminar</th>
+        <td mat-cell *matCellDef="let user"><button class="trash-button" (click)="remove(user.foodId)"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="18" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+          </svg></button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>

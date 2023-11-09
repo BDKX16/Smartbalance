@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef, OnInit } from '@angular/core';
 import { LoginService } from '../login/login.service';
 
 @Component({
@@ -6,12 +6,11 @@ import { LoginService } from '../login/login.service';
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.css']
 })
-export class TopbarComponent {
-
+export class TopbarComponent implements OnInit{
   constructor(private loginService:LoginService){}
-  title = 'Smartband';
-
-
+  ngOnInit(): void {
+  }
+  
   estaLogueado(){
     return this.loginService.getIdToken();
   }
