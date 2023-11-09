@@ -1,28 +1,47 @@
+
 <app-topbar></app-topbar>
 <form #alimentosFormulario="ngForm" (ngSubmit)="cargarAlimentos(alimentosFormulario)">
-        <label>Ingresa tus alimentos</label>
+        <h1>Tus alimentos</h1>
     <div class="food-inputs">
-
+      <h3>Ingresa un alimento</h3>
+      <div class="text-input">
+        <label>Nombre de la comida</label>
         <input type="text">
-        <input type="number">
-        <input type="number">
-        <input type="number">
-        <input type="number">
-        <input type="number">
-        <button type="submit">Cargar</button>
+      </div>
+        <div class="number-input">
+          <label>Total calories (kcal/100gr)</label>
+          <input type="number">
+        </div>
+        <div class="number-input"> 
+          <label>Protein (grams on 100gr)</label>
+          <input type="number">
+        </div>
+        <div class="number-input">
+          <label>Carbohidrates (grams on 100gr)</label>
+          <input type="number">
+        </div>
+        <div class="number-input">
+          <label>Fats (grams on 100gr)</label>
+          <input type="number">
+        </div>
+
+        <div class="btn">
+          <button type="submit">Cargar</button>
+        </div>
+        
     </div>
 
 </form>
 
-
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<label style="margin-top: 4rem;font-size: 11px;">All numeric measures are taken as a reference on a 100gr piece of food</label>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let user"> {{user.name}} </td>
       </ng-container>
 
       <ng-container matColumnDef="prots">
-        <th mat-header-cell *matHeaderCellDef> Protein </th>
+        <th mat-header-cell *matHeaderCellDef> Proteins </th>
         <td mat-cell *matCellDef="let user"> {{user.prots}} </td>
       </ng-container>
 
@@ -53,4 +72,3 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
    
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>

@@ -7,7 +7,6 @@
 }
 
 table{
-    margin-top:3rem;
     width:100%;
 }
 
@@ -23,4 +22,82 @@ table{
 .mat-mdc-header-row{
     color:white;
     background-color: #1f14fb;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  h1{
+    margin:0px;
+    font-family: Prompt;
+    text-align: center;
+    font-weight: 400;
+    font-size: 40px;
+  }
+
+  .food-inputs h3{
+    position:absolute;
+    top:-10px;
+    left:41%;
+    margin-bottom:10px;
+
+}
+
+.food-inputs{
+  padding:40px 20px 20px 20px;
+  position:relative;
+}
+.food-inputs div{
+  display: flex;
+  flex-direction: column;
+  
+}
+.food-inputs div input{
+  padding:10px;
+  border-radius: 4px;
+  color:white;
+  font-family: Prompt;
+  letter-spacing: 2px;
+  border: 1px solid grey;
+  background-color: #443afccc;
+  width:230px;
+
+}
+
+.food-inputs div input:focus{
+  background-color: #443afcf8;
+}
+
+.food-inputs div label{
+  font-size: 12px; 
+  font-weight: 600; 
+}
+
+.food-inputs .btn{
+  padding: 16px 0px 10px 2px;
+  flex:1;
+}
+.food-inputs .btn button{
+  padding: 5px 10px 5px 10px;
+  flex:1;
+  border-radius: 4px;
+  font-family: Prompt;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color:white;
+  border: 2px solid #2d22ff;
+  background-color: #2d22ff;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.food-inputs .btn button:hover{
+  font-weight: 600;
+  color:#2d22ff;
+  border: 2px solid #2d22ff;
+  background-color: white;
 }
