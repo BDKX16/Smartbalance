@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     private loginService: LoginService,
     private httpClient: HttpClient
   ) {}
+  
   displayedColumns: string[] = [
     'name',
     'time',
