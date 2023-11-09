@@ -71,15 +71,13 @@ export class DashboardComponent implements OnInit {
     this.httpClient
       .get('http://localhost:3000/api/get-user-foods', httpHeaders)
       .subscribe((response: any) => {
-        console.log(response.data);
         this.UserFoods = response.data;
       });
 
     let baseUrl = 'http://localhost:3000/api/get-data?timeAgo=' + 4;
     let tempIngestsArray: any;
 
-    this.httpClient.get(baseUrl, httpHeaders).subscribe((response: any) => {
-      console.log(response.data);
+    this.httpClient.get(baseUrl, httpHeaders).subscribe((response: any) => {      
       tempIngestsArray = response.data;
       let tempSendArray: IUserIngests[] = [];
 
@@ -122,12 +120,12 @@ export class DashboardComponent implements OnInit {
             }
           );
           this.UserIngests = tempSendArray;
-          console.log(tempSendArray);
 
-          //if()
         }
-      );
+      );      
+      this.loadTableItemsPerDay(this.diaShownCode);
     });
+    
   }
 
   nextDay(){
@@ -144,6 +142,7 @@ export class DashboardComponent implements OnInit {
       ];
 
       this.diaShownCode = this.diaShownCode + 1;
+      this.loadTableItemsPerDay(this.diaShownCode);
       this.diaShown = diasSemana[this.diaShownCode];
       
       const dif = this.diaActualCode - this.diaShownCode;
@@ -157,6 +156,7 @@ export class DashboardComponent implements OnInit {
 
       }else{
         this.diaAsegun = this.diaShown;
+        this.diaShown="";
       }
     }
   }
@@ -175,6 +175,8 @@ export class DashboardComponent implements OnInit {
       ];
 
       this.diaShownCode = this.diaShownCode - 1;
+
+      this.loadTableItemsPerDay(this.diaShownCode);
       this.diaShown = diasSemana[this.diaShownCode];
 
       const dif = this.diaActualCode - this.diaShownCode;
@@ -188,9 +190,23 @@ export class DashboardComponent implements OnInit {
 
       }else{
         this.diaAsegun = this.diaShown;
+        this.diaShown="";
       }
+
+
       
     }
+  }
+
+  loadTableItemsPerDay(diaMostrado:number){
+    let tableItems:IUserIngests[] = [];
+    this.UserIngests.forEach(item=>{
+      if(item.dia == diaMostrado){
+        tableItems.push(item);
+      }
+    });
+
+    this.UserIngestsTable = tableItems;
   }
 
   limiteDia(move:string){
@@ -209,17 +225,17 @@ export class DashboardComponent implements OnInit {
 
   getTotal(type: string) {
     if (type == 'fats') {
-      return this.UserIngests.map((t) => t.fats).reduce(
+      return this.UserIngestsTable.map((t) => t.fats).reduce(
         (acc, value) => acc + value,
         0
       );
     } else if (type == 'carbs') {
-      return this.UserIngests.map((t) => t.carbs).reduce(
+      return this.UserIngestsTable.map((t) => t.carbs).reduce(
         (acc, value) => acc + value,
         0
       );
     } else if (type == 'prots') {
-      return this.UserIngests.map((t) => t.prots).reduce(
+      return this.UserIngestsTable.map((t) => t.prots).reduce(
         (acc, value) => acc + value,
         0
       );
@@ -229,14 +245,14 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalGrams() {
-    return this.UserIngests.map((t) => t.grams).reduce(
+    return this.UserIngestsTable.map((t) => t.grams).reduce(
       (acc, value) => acc + value,
       0
     );
   }
 
   getTotalCalories() {
-    return this.UserIngests.map((t) => t.calorias).reduce(
+    return this.UserIngestsTable.map((t) => t.calorias).reduce(
       (acc, value) => acc + value,
       0
     );
