@@ -58,17 +58,18 @@ form{
 .food-inputs div input{
   padding:10px;
   border-radius: 4px;
-  color:white;
+  color:black;
   font-family: Prompt;
   letter-spacing: 2px;
-  border: 1px solid grey;
-  background-color: #443afccc;
+  border: 1px solid transparent;
+  box-shadow: 1px 1px 6px -1px grey;
+  background-color: rgba(255, 255, 255, 0.849);
   width:230px;
 
 }
 
 .food-inputs div input:focus{
-  background-color: #443afcf8;
+  background-color: white;
 }
 
 .food-inputs div label{

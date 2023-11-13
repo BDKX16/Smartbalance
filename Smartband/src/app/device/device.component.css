@@ -1,0 +1,100 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container h2{
+    margin:3px 10px 20px 10px;
+    color:black;
+    font-family: Prompt;
+    font-size: 40px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-button button{
+    padding:5px 20px 10px 20px;
+    background-color: rgb(40, 52, 228);
+    border: 1px solid transparent;
+    border-radius: 3px; 
+    font-family: Prompt;
+    letter-spacing: 2px;
+    display: flex;
+    }
+
+    .form-button p{
+        margin-bottom: 10px;
+        margin-right: 7px;
+    }
+
+.form-button svg{
+    margin-top: 10px;
+}
+
+.form-input input{
+    padding:10px;
+  border-radius: 4px;
+  color:black;
+  font-family: Prompt;
+  letter-spacing: 2px;
+  
+  box-shadow: 1px 1px 6px -1px grey;
+  border: 2px solid transparent;
+  background-color: white;
+  width:230px;
+  margin-bottom: 10px;
+}
+
+.form-input input:focus{
+  background-color: #544ce9;
+}
+
+.devices{
+    margin-top: 50px;
+       
+    padding:20px;
+    padding-bottom:30px;
+    width: 600px;
+    background-color: #677cf5bd;    
+    box-shadow: 1px 2px 18px 3px grey;
+    border-radius: 14px;
+}
+
+.devices h2{
+    margin:3px 10px 20px 10px;
+    color:black;
+    font-family: Prompt;
+    font-size: 25px;
+}
+
+.item-container{
+    display: grid;
+}
+
+.item{
+    padding:5px;
+    background-color: transparent;
+    box-shadow: 1px 2px 10px 6px grey;
+    border-radius: 5px;
+    width:fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.item img{
+    color:white;
+}
+
+.item h3{
+    margin:3px 10px;
+    color:black;
+    font-family: Quicksand;
+    font-size: 25px;
+}

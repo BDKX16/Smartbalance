@@ -6,6 +6,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto,Prompt,Quicksand, "Helvetica Neue", sans-serif; }
 body.dash{
     background-color: #ffffff;
+    background-image: linear-gradient(#677cf5, white,white);
 }
 
 body.device{

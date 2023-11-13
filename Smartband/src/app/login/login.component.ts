@@ -9,7 +9,6 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  credentials:any;
 
   constructor(private loginService:LoginService){}
 
