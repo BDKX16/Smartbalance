@@ -48,11 +48,13 @@ export class DeviceComponent implements OnInit{
   addDevice(form:NgForm){
 
     const serial = form.value.serial;
+    const name = form.value.name;
 
     const token = this.loginService.getIdToken();
 
     const toSend={
-      dId: serial
+      dId: serial,
+      name:name
     }
 
     const httpHeaders = {
